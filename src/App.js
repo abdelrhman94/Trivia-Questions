@@ -1,57 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import StepOne from "./pages/StepOne";
+import Final from "./pages/Final";
+import Question from "./pages/Question";
+import Error from "./components/404/Error";
+
+import { Container, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import StepTwo from "./pages/StepTwo";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Router>
+      <Container maxWidth="sm">
+        <Box textAlign="center" mt={5}>
+          <Switch>
+            <Route exact path="/">
+              <Typography variant="h2" fontWeight="bold">
+                Trivia Questions Game
+              </Typography>
+              <StepOne />
+            </Route>
+            <Route path="/step-two">
+              <StepTwo />
+            </Route>
+            <Route path="/question">
+              <Question />
+            </Route>
+            <Route path="/score">
+              <Final />
+            </Route>
+            <Route path="*">
+              <Error />
+            </Route>
+          </Switch>
+        </Box>
+      </Container>
+    </Router>
   );
 }
 
