@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { Button } from "@mui/material";
+import { Button, TextField, FormControl } from "@mui/material";
 import { Box } from "@mui/system";
 
 import SelectField from "../components/SelectField";
 import TextFieldCom from "../components/TextField";
 
 const Setting = () => {
+  const [name, setName] = useState("");
   const history = useHistory();
 
   const difficultyOption = [
@@ -18,6 +19,18 @@ const Setting = () => {
 
   return (
     <form>
+      <Box mt={3} width="100%">
+        <FormControl fullWidth size="small">
+          <TextField
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            variant="outlined"
+            label="Amount of Question"
+            type="text"
+            size="small"
+          />
+        </FormControl>
+      </Box>
       <SelectField options={difficultyOption} label="Difficulty" />
       <TextFieldCom />
       <Box mt={3} width="100%">
@@ -26,6 +39,7 @@ const Setting = () => {
           variant="contained"
           onClick={() => {
             history.push("/step-two");
+            localStorage.setItem("Name", name);
           }}
         >
           Next

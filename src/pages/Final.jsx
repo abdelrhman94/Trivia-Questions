@@ -12,13 +12,14 @@ const Final = () => {
 
   const handleBackToSettings = () => {
     dispatch(handleScoreChange(0));
+    localStorage.removeItem("Name");
     history.push("/");
   };
 
   return (
     <Box mt={30}>
       <Typography variant="h3" fontWeight="bold" mb={3}>
-        Final Score {score}
+        Final Score for {localStorage.getItem("Name")} {score}
       </Typography>
       <Button onClick={handleBackToSettings} variant="outlined">
         back to settings!
