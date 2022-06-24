@@ -25,7 +25,7 @@ const Setting = () => {
             value={name}
             onChange={(event) => setName(event.target.value)}
             variant="outlined"
-            label="Amount of Question"
+            label="Enter your Name"
             type="text"
             size="small"
           />
